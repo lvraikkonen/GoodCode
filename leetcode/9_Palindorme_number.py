@@ -8,7 +8,7 @@ def isPalindrom(x):
     
     rev = 0
     tmp = x
-    # refer to 8_reverse_integer
+    # refer to 7_reverse_integer
     while tmp != 0:
         rev = 10 * rev + tmp % 10
         tmp /= 10

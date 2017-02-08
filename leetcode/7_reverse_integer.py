@@ -21,3 +21,8 @@ def reverse(x):
             return -rev
     else:
         return 0
+
+
+if __name__ == "__main__":
+    result = reverse(1534236469)
+    print result
