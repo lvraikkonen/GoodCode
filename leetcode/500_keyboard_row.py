@@ -12,3 +12,12 @@ class Solution(object):
             if any(wset <= rset for rset in rs):
                 ans.append(word)
         return ans
+
+def findWords(words):
+    line1, line2, line3 = set('qwertyuiop'), set('asdfghjkl'), set('zxcvbnm')
+    result = []
+    for word in words:
+        w = set(word.lower())
+        if w.issubset(line1) or w.issubset(line2) or w.issubset(line3):
+            result.append(word)
+    return result
