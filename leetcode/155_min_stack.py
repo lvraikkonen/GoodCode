@@ -1,3 +1,4 @@
+# 双列表，分别存储栈值和最小值
 class MinStack(object):
 
     def __init__(self):
