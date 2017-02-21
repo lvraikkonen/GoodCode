@@ -42,7 +42,7 @@ while size of queue1 is bigger than 1, pipe dequeued items from queue1 into queu
 dequeue and return the last item of queue1, then switch the names of queue1 and queue2
 =======================================================================================
 """
-class MyStack(object):
+class MyStack1(object):
 
     def __init__(self):
         """
@@ -115,3 +115,37 @@ pop:
 deqeue from queue1
 ==================================================================================
 """
+
+
+# implement stack using python deque
+from collections import deque
+
+class MyStack2:
+    def __init__(self):
+        self.Q = deque()
+    
+    def push(self, x):
+        tmpQ = deque()
+        while self.Q:
+            tmpQ.append(self.Q.popleft())
+        
+        self.Q.append(x)
+
+        while tmpQ:
+            self.Q.append(tmpQ.popleft())
+    
+    def pop(self):
+        self.Q.popleft()
+    
+    def top(self):
+        return self.Q[0]
+    
+    def empty(self):
+        return len(self.Q) == 0
+
+if __name__ == "__main__":
+    obj = MyStack2()
+    obj.push(1)
+    param_2 = obj.pop()
+    param_4 = obj.empty()
+    print 

@@ -34,12 +34,16 @@ class MyStack:
 # print s.size()
         
 
-class MyQueue(object):
+# implement queue using python deque
+from collections import deque
+
+class MyQueue1(object):
 
     def __init__(self):
         """
         Initialize your data structure here.
         """
+        self.stack = deque()
         
 
     def push(self, x):
@@ -48,6 +52,15 @@ class MyQueue(object):
         :type x: int
         :rtype: void
         """
+        tmp_stack = deque()
+
+        for i in range(len(self.stack)):
+            tmp_stack.append(self.stack.pop())
+        
+        self.stack.append(x)
+
+        for i in range(len(tmp_stack)):
+            self.stack.append(tmp_stack.pop())
         
 
     def pop(self):
@@ -55,6 +68,7 @@ class MyQueue(object):
         Removes the element from in front of queue and returns that element.
         :rtype: int
         """
+        return self.stack.pop()
         
 
     def peek(self):
@@ -62,6 +76,7 @@ class MyQueue(object):
         Get the front element.
         :rtype: int
         """
+        return self.stack[-1]
         
 
     def empty(self):
@@ -69,12 +84,15 @@ class MyQueue(object):
         Returns whether the queue is empty.
         :rtype: bool
         """
-        
+        return len(self.stack) == 0
 
 
-# Your MyQueue object will be instantiated and called as such:
-# obj = MyQueue()
-# obj.push(x)
-# param_2 = obj.pop()
-# param_3 = obj.peek()
-# param_4 = obj.empty()
+if __name__ == "__main__":
+    # Your MyQueue object will be instantiated and called as such:
+    obj = MyQueue1()
+    obj.push(0)
+    obj.push(1)
+    obj.push(2)
+    param_2 = obj.pop()
+    param_3 = obj.peek()
+    param_4 = obj.empty()
