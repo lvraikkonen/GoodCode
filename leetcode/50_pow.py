@@ -1,4 +1,4 @@
-def pwo(x, n):
+def pow(x, n):
     if n < 0:
         return 1.0 / pow(x, -n)
     elif n == 0:
