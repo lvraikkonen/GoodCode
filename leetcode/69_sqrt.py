@@ -1,3 +1,4 @@
+# binary search
 def sqrt(x):
     low, high = 0, x/2 + 1
     while low <= high:
