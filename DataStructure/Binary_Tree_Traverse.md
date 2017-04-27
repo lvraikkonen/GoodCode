@@ -165,13 +165,6 @@ def inorderTraversal_iterative(root):
 
 后序遍历
 
-使用prev变量跟踪上一次访问的节点。假设栈顶元素是curr。当prev是curr的父节点时，我们正在向下遍历树。此时，优先遍历curr的左孩子（将左孩子压入栈）。如果没有左孩子，再看右孩子。如果左右孩子都不存在（curr是叶节点），就输出curr的值并弹出栈顶元素。
-
-如果prev是curr的左孩子，我们正在从左子树向上遍历。我们看一下curr的右孩子。如果可以，就从右孩子向下遍历（将右孩子压入栈），否则打印curr的值并弹出栈顶元素。
-
-如果prev是curr的右孩子，我们正在从右子树向上遍历。打印curr的值并弹出栈顶元素
-
-
 后序遍历伪代码：
 
 ```
@@ -194,24 +187,40 @@ iterativePostorder(node)
 ```
 
 ``` python
-def postorderTraversal(self, root):
-    if root is None:
+def postorderTraversal(node):
+    if node is None:
         return []
-    stack = [root]
-    ans = []
-    pre = None
-    while stack:
-        cur = stack[-1]
-        if pre is None or pre.left == cur or pre.right == cur:
-            if cur.left:
-                stack.append(cur.left)
-            elif cur.right:
-                stack.append(cur.right)
-        elif pre == cur.left and cur.right:
-            stack.append(cur.right)
+    stack = []
+    result = []
+    lastNodeVisited = None
+    while stack or node:
+        if node:
+            stack.append(node)
+            node = node.left
         else:
-            ans.append(cur.val)
-            stack.pop()
-        pre = cur
-    return ans
+            peekNode = stack[-1]
+            if peekNode.right and lastNodeVisited != peekNode.right:
+                node = peekNode.right
+            else:
+                result.append(peekNode)
+                lastVisitedNode = stack.pop()
+    return result
+```
+
+
+## 广度优先实现
+
+伪代码
+
+```
+levelorder(root)
+  q ← empty queue
+  q.enqueue(root)
+  while (not q.isEmpty())
+    node ← q.dequeue()
+    visit(node)
+    if (node.left ≠ null)
+      q.enqueue(node.left)
+    if (node.right ≠ null)
+      q.enqueue(node.right)
 ```
