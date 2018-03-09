@@ -7,7 +7,7 @@
 
 class Solution(object):
     def _height(self, root):
-        if root == None:
+        if not root:
             return 0
         return max(self._height(root.left), self._height(root.right)) + 1
     
@@ -16,7 +16,7 @@ class Solution(object):
         :type root: TreeNode
         :rtype: bool
         """
-        if root == None:
+        if not root:
             return True
         if abs(self._height(root.left) - self._height(root.right)) <=1:
             return self.isBalanced(root.left) and self.isBalanced(root.right)
