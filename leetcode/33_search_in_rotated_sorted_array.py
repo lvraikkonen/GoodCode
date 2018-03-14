@@ -14,33 +14,26 @@ def search(nums, target):
     """
     if not nums:
         return -1
-    start, end = 0, len(nums)-1
-    while start+1 < end:
-        mid = start + (end - start) / 2
+    l, r = 0, len(nums) - 1
+    while l <= r:
+        mid = (l + r) / 2
         if nums[mid] == target:
             return mid
-        elif nums[mid] > nums[start]:
-            # 左边有序， 在左边
-            if target >= nums[start] and target <= nums[mid]:
-                end = mid
-            # 在右边
+        elif nums[mid] >= nums[l]:
+            # 左边有序
+            if nums[l] <= target <= nums[mid]:
+                r = mid-1
             else:
-                start = mid
+                l = mid+1
         else:
-            # 右边有序，在右边
-            if target >= nums[mid] and target <= nums[end]:
-                start = mid
-            # 在左边
+            # 右边有序
+            if nums[mid] <= target <= nums[r]:
+                l = mid+1
             else:
-                end = mid
-    
-    if nums[start] == target:
-        return start
-    if nums[end] == target:
-        return end
+                r = mid-1
     return -1
 
 
 if __name__ == "__main__":
-    lst = [4, 5, 6, 0, 1, 2, 3]
-    result = search(lst, 1)
+    lst = [4,5,6,7,0,2]
+    result = search(lst, 0)
