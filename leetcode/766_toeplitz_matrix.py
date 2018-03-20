@@ -18,6 +18,6 @@ class Solution(object):
 
 if __name__ == '__main__':
     s = Solution()
-    matrix = [[1,2,3,4],[5,1,2,3],[9,5,1,2]]
+    matrix = [[1, 2], [2, 2]]
     result = s.isToeplitzMatrix(matrix)
     print(result)
