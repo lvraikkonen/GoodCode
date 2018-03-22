@@ -22,5 +22,5 @@ def two_sum_twoPointer(nums, target):
     return [-1, -1]
 
 if __name__ == "__main__":
-    result = two_sum_twoPointer([3,3], 6)
+    result = two_sum_hashTable([1,3,3], 6)
     print result

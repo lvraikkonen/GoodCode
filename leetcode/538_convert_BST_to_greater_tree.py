@@ -11,7 +11,7 @@ class TreeNode(object):
         self.right = None
 
 class Solution(object):
-    def convertBST(self, root):
+    def convertBST_recursive(self, root):
         """
         :type root: TreeNode
         :rtype: TreeNode
@@ -28,6 +28,20 @@ class Solution(object):
         
         traverse(root)
         return root
+    
+    def convertBST_iterative(self, root):
+        if not root:
+            return None
+        cur, stack, total = root, [], 0
+        while stack or cur:
+            while cur:
+                stack.append(cur)
+                cur = cur.right
+            cur = stack.pop()
+            total += cur.val
+            cur.val = total
+            cur = cur.left
+        return root
 
 if __name__ == '__main__':
     node1 = TreeNode(5)
@@ -37,4 +51,4 @@ if __name__ == '__main__':
     node1.right = node3
 
     s = Solution()
-    r = s.convertBST(node1)
+    r = s.convertBST_iterative(node1)
