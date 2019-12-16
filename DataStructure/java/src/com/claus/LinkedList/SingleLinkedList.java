@@ -1,4 +1,4 @@
-package com.claus;
+package com.claus.LinkedList;
 
 public class SingleLinkedList {
 
