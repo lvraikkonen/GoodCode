@@ -106,4 +106,52 @@ public class leetcode_145_Binary_Tree_Postorder_Traversal {
         Collections.reverse(res);
         return res;
     }
+
+
+    public static void morrisPos(TreeNode head) {
+        if(head == null){
+            return;
+        }
+        TreeNode cur = head;
+        TreeNode mostRight = null;
+        while (cur != null){
+            mostRight = cur.left;
+            if(mostRight != null){
+                while (mostRight.right !=null && mostRight.right != cur){
+                    mostRight = mostRight.right;
+                }
+                if(mostRight.right == null){
+                    mostRight.right = cur;
+                    cur = cur.left;
+                    continue;
+                }else {
+                    mostRight.right = null;
+                    printEdge(cur.left);
+                }
+            }
+            cur = cur.right;
+        }
+        printEdge(head);
+        System.out.println();
+    }
+    public static void printEdge(TreeNode node){
+        TreeNode tail =reverseEdge(node);
+        TreeNode cur = tail;
+        while (cur != null ){
+            System.out.print(cur.val+" ");
+            cur =cur.right;
+        }
+        reverseEdge(tail);
+    }
+    public static TreeNode reverseEdge(TreeNode node){
+        TreeNode pre = null;
+        TreeNode next = null;
+        while (node != null){
+            next = node.right;
+            node.right = pre;
+            pre = node;
+            node = next;
+        }
+        return pre;
+    }
 }

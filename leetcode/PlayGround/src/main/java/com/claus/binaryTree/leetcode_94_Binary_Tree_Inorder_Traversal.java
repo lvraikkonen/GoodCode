@@ -40,4 +40,30 @@ public class leetcode_94_Binary_Tree_Inorder_Traversal {
         }
         return res;
     }
+
+    public static void morrisIn(TreeNode head) {
+        if(head == null){
+            return;
+        }
+        TreeNode cur = head;
+        TreeNode mostRight = null;
+        while (cur != null){
+            mostRight = cur.left;
+            if(mostRight != null){
+                while (mostRight.right !=null && mostRight.right != cur){
+                    mostRight = mostRight.right;
+                }
+                if(mostRight.right == null){
+                    mostRight.right = cur;
+                    cur = cur.left;
+                    continue;
+                }else {
+                    mostRight.right = null;
+                }
+            }
+            System.out.print(cur.val+" ");
+            cur = cur.right;
+        }
+        System.out.println();
+    }
 }
