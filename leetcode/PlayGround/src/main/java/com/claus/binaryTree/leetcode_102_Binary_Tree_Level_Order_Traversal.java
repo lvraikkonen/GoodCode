@@ -1,5 +1,7 @@
 package com.claus.binaryTree;
 
+import com.claus.linkedList.ListNode;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -54,5 +56,49 @@ public class leetcode_102_Binary_Tree_Level_Order_Traversal {
             ans.add(tmp);
         }
         return ans;
+    }
+
+
+    // 每层变成链表
+    public static ListNode[] listOfDepth(TreeNode tree) {
+        // 层序遍历
+        if (tree==null) {
+            return new ListNode[0];
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(tree);
+        List<ListNode> res = new ArrayList<>();
+        ListNode dummy = new ListNode(-1);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            ListNode curr = dummy;
+            for (int i=0; i<size; i++) {
+                TreeNode node = queue.poll();
+                curr.next = new ListNode(node.val);
+                if (node.left!=null) {
+                    queue.add(node.left);
+                }
+                if (node.right!=null) {
+                    queue.add(node.right);
+                }
+                curr = curr.next;
+            }
+            res.add(dummy.next);
+            dummy.next = null;
+        }
+        return res.toArray(new ListNode[] {});
+    }
+
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(1);
+        TreeNode node1 = new TreeNode(2);
+        TreeNode node2 = new TreeNode(3);
+        TreeNode node3 = new TreeNode(4);
+        TreeNode node4 = new TreeNode(5);
+        root.left = node1;
+        root.right = node2;
+        node1.left = node3;
+        node1.right = node4;
+        ListNode[] result = listOfDepth(root);
     }
 }
