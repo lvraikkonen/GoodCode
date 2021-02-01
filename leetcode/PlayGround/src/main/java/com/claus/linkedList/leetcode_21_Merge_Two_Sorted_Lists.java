@@ -2,6 +2,9 @@ package com.claus.linkedList;
 
 public class leetcode_21_Merge_Two_Sorted_Lists {
 
+    /*
+    合并两个有序链表
+     */
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode p = new ListNode(-1);
         ListNode head = p;
