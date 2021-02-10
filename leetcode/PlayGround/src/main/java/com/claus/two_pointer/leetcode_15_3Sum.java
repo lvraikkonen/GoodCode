@@ -53,10 +53,10 @@ public class leetcode_15_3Sum {
                     left++;
                     right--;
                     while (left<right && nums[left]==nums[left-1]) {
-                        left++;
+                        left++; // 去重
                     }
                     while (left<right && nums[right]==nums[right+1]) {
-                        right--;
+                        right--; // 去重
                     }
                 }
                 else if (nums[left]+nums[right] > target) {
