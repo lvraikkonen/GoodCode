@@ -3,7 +3,8 @@ package com.claus.SlideWindow;
 public class leetcode_1423_Maximum_Points_You_Can_Obtain_from_Cards {
 
     /*
-    维护一个len-k的窗口，保证窗口里面和最小，然后剩余的k个数的和就是最
+    反向操作
+    维护一个len-k的窗口，保证窗口里面和最小，然后剩余的k个数的和就是最大
      */
     public static int maxScore(int[] cardPoints, int k) {
         int len = cardPoints.length;
