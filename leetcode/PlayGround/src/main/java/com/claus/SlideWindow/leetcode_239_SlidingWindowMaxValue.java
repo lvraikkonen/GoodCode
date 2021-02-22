@@ -3,7 +3,7 @@ package com.claus.SlideWindow;
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class leetcode_209_SlidingWindowMaxValue {
+public class leetcode_239_SlidingWindowMaxValue {
 
     public static int[] maxSlidingWindow(int[] nums, int k) {
         int len = nums.length;
