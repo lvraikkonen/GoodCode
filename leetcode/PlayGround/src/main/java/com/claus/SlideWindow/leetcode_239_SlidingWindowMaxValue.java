@@ -12,7 +12,7 @@ public class leetcode_239_SlidingWindowMaxValue {
         }
         int[] res = new int[len - k + 1];
         int arr_idx = 0;
-        // 维护一个单调递增的双向队列
+        // 维护一个单调递减的双向队列
         Deque<Integer> deque = new LinkedList<>();
         // 将第一个窗口的值按照规则入队
         for (int i=0; i < k; i++) {
