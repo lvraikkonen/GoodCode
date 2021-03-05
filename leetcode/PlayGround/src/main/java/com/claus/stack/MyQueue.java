@@ -10,6 +10,8 @@
  */
 package com.claus.stack;
 
+import com.claus.Design.MyMaxQueue;
+
 import java.util.Stack;
 
 /**
@@ -24,50 +26,104 @@ import java.util.Stack;
  * 方法1：两个栈
  * 方法2：
  */
+//public class MyQueue {
+//
+//    private Stack<Integer> s1 = new Stack<>();
+//    private Stack<Integer> s2 = new Stack<>();
+//    private int front;
+//
+//    /** Initialize your data structure here. */
+//    public MyQueue() {
+//
+//    }
+//
+//    /** Push element x to the back of queue. */
+//    public void push(int x) {
+//        // 最新压入的元素必须得放在栈底
+//        if (s1.empty()) {
+//            front = x;
+//        }
+//        while (!s1.isEmpty()) {
+//            // 压入栈2
+//            s2.push(s1.pop());
+//        }
+//        s2.push(x);
+//        while (!s2.isEmpty()) {
+//            // 放回栈1
+//            s1.push(s2.pop());
+//        }
+//    }
+//
+//    /** Removes the element from in front of queue and returns that element. */
+//    public int pop() {
+//        int tmp = s1.pop();
+//        if (!s1.empty()) {
+//            front = s1.peek();
+//        }
+//        return tmp;
+//    }
+//
+//    /** Get the front element. */
+//    public int peek() {
+//        return front;
+//    }
+//
+//    /** Returns whether the queue is empty. */
+//    public boolean empty() {
+//        return s1.isEmpty();
+//    }
+//}
+
 public class MyQueue {
 
-    private Stack<Integer> s1 = new Stack<>();
-    private Stack<Integer> s2 = new Stack<>();
-    private int front;
+    private Stack<Integer> in_stack;
+    private Stack<Integer> out_stack;
 
-    /** Initialize your data structure here. */
     public MyQueue() {
-
+        in_stack = new Stack<>();
+        out_stack = new Stack<>();
     }
 
     /** Push element x to the back of queue. */
     public void push(int x) {
-        // 最新压入的元素必须得放在栈底
-        if (s1.empty()) {
-            front = x;
-        }
-        while (!s1.isEmpty()) {
-            // 压入栈2
-            s2.push(s1.pop());
-        }
-        s2.push(x);
-        while (!s2.isEmpty()) {
-            // 放回栈1
-            s1.push(s2.pop());
-        }
+        in_stack.push(x);
     }
 
     /** Removes the element from in front of queue and returns that element. */
     public int pop() {
-        int tmp = s1.pop();
-        if (!s1.empty()) {
-            front = s1.peek();
+        // 出栈为空
+        if (out_stack.isEmpty()) {
+            while (!in_stack.isEmpty()) {
+                out_stack.push(in_stack.pop());
+            }
         }
-        return tmp;
+        return out_stack.pop();
     }
 
     /** Get the front element. */
     public int peek() {
-        return front;
+        // 出栈为空
+        if (out_stack.isEmpty()) {
+            while (!in_stack.isEmpty()) {
+                out_stack.push(in_stack.pop());
+            }
+        }
+        return out_stack.peek();
     }
 
     /** Returns whether the queue is empty. */
     public boolean empty() {
-        return s1.isEmpty();
+        return in_stack.isEmpty() && out_stack.isEmpty();
+    }
+
+    public static void main(String[] args) {
+        MyQueue mq = new MyQueue();
+        mq.push(1);
+        mq.push(2);
+        int res1 = mq.peek();
+        mq.push(3);
+        int res2 = mq.pop();
+        int res3 = mq.pop();
+        boolean em = mq.empty();
     }
 }
