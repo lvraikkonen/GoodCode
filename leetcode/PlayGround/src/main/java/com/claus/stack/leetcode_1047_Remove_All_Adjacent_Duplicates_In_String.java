@@ -10,6 +10,8 @@
  */
 package com.claus.stack;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Stack;
 
 public class leetcode_1047_Remove_All_Adjacent_Duplicates_In_String {
@@ -33,9 +35,40 @@ public class leetcode_1047_Remove_All_Adjacent_Duplicates_In_String {
         return ans.toString();
     }
 
+    public static String removeDuplicates_1(String s) {
+        int index = -1;
+        char[] chars = s.toCharArray();
+        for (int i=0; i < chars.length; i++) {
+            if (index >=0 && chars[index] == chars[i]) {
+                index--;
+            } else {
+                index++;
+                chars[index] = chars[i];
+            }
+        }
+        return String.copyValueOf(chars, 0, index+1);
+    }
+
+    public static String removeDuplicates_2(String S) {
+        char[] char_arr = S.toCharArray();
+        Deque<Character> queue = new ArrayDeque<>();
+        for (char c: char_arr) {
+            if (!queue.isEmpty() && queue.peekLast().equals(c)) {
+                queue.pollLast();
+            } else {
+                queue.addLast(c);
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        while (!queue.isEmpty()) {
+            sb.append(queue.pollFirst());
+        }
+        return sb.toString();
+    }
+
     public static void main(String[] args) throws Exception {
         String S = "abbaca";
-        System.out.println(removeDuplicates(S));
+        System.out.println(removeDuplicates_2(S));
 
     }
 
