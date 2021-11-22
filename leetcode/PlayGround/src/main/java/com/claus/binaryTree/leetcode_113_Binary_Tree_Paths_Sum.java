@@ -1,4 +1,4 @@
-package com.claus.DFS;
+package com.claus.binaryTree;
 
 import com.claus.binaryTree.TreeNode;
 
