@@ -3,12 +3,12 @@ package com.claus.math;
 public class leetcode_258_Add_Digits {
     public static int addDigits(int num) {
         while (num >= 10) {
-            int next = 0;
-            while (num != 0) {
-                next = next + num % 10;
+            int sum = 0;
+            while (num > 0) {
+                sum += num % 10;
                 num /= 10;
             }
-            num = next;
+            num = sum;
         }
         return num;
     }
