@@ -17,7 +17,7 @@ public class leetcode_66_Plus_One {
     }
 
     public static void main(String[] args) {
-        int[] num = {9,9,8};
+        int[] num = {9,9,9};
         int[] res = plusOne(num);
     }
 }

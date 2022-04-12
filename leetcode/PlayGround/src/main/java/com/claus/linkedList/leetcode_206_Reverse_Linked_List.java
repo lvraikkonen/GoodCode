@@ -18,6 +18,7 @@ public class leetcode_206_Reverse_Linked_List {
         if (head == null || head.next == null) {
             return head;
         }
+        // 反转之后的头结点
         ListNode last = reverseList_recursive(head.next);
         head.next.next = head;
         head.next = null;

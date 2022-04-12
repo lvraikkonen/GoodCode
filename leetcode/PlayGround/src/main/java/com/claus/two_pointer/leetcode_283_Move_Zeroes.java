@@ -31,8 +31,21 @@ public class leetcode_283_Move_Zeroes {
         }
     }
 
+    public static void moveZeros_2(int[] nums) {
+        int slow = 0;
+        for (int fast=0; fast < nums.length; fast++) {
+            if (nums[fast]!=0) {
+                nums[slow] = nums[fast];
+                slow++;
+            }
+        }
+        for (int j = slow; slow < nums.length; j++) {
+            nums[j] = 0;
+        }
+    }
+
     public static void main(String[] args) {
         int[] nums = {0,1,3,0,7};
-        moveZeros_1(nums);
+        moveZeros_2(nums);
     }
 }
